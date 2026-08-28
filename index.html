@@ -487,9 +487,12 @@ onlyAddr.addEventListener('change', applyFilters);
 
 // Добавляем интерфейс для курьеров прямо в блок статистики
 // Добавляем интерфейс для курьеров и фильтр по городам
+// Добавляем интерфейс для курьеров и фильтр по городам
 const locCheckboxes = locs.map(l => {
-  const locName = l || 'Ялта (без метки)';
-  return `<label style="white-space:nowrap; cursor:pointer;"><input type="checkbox" name="distLoc" value="${l}" checked> ${locName}</label>`;
+  // Проверяем, является ли текущий город Ялтой. Если да — ставим checked, иначе оставляем пустым
+  const isChecked = (l === 'Ялта') ? 'checked' : '';
+  
+  return `<label style="white-space:nowrap; cursor:pointer;"><input type="checkbox" name="distLoc" value="${l}" ${isChecked}> ${l}</label>`;
 }).join(' &nbsp; ');
 
 statsEl.innerHTML = `
